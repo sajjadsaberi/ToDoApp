@@ -5,6 +5,8 @@
     --color-success: #36d39a ;
     --color-warning: #fbbe23 ;
     --color-error: #f87171 ;
+    --color-white: #FFF ;
+    --color-black: #333 ;
 }
 
 * {
