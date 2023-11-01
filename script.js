@@ -29,6 +29,7 @@ const showAlert = (message, type) => {
 };
 
 const displayToDos = () => {
+      todosBody.innerHTML = "" ;
     if(todos.length === 0) {
         todosBody.innerHTML = "<tr><td colspan='4'>No Task Found!</td></tr>";
         return ;
