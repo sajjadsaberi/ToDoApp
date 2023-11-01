@@ -3,9 +3,9 @@ const dateInput = document.getElementById("date-input") ;
 const addButton = document.getElementById("add-button") ;
 const alertMessage = document.getElementById("alert-message");
 const todosBody = document.querySelector("tbody");
+const deleteAllButton = document.getElementById("delete-all-buttton");
 
-const todos = JSON.parse(localStorage.getItem("todos")) || [];
-console.log(todos);
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 const saveToLocalStorage = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -65,13 +65,24 @@ const addHandler = () => {
         displayToDos() ;
         taskInput.value = "" ;
         dateInput.value = "" ;
-        console.log(todos) ;
         showAlert("Todo Added Successfully", "success")
     } else {
         showAlert("Please Enter a ToDo!", "error") ;
     }
 };
 
-displayToDos() ;
+const deleteAllHandler = () => {
+    if (todos.lengh) {
+        todos = [] ;
+        saveToLocalStorage();
+        displayToDos() ;
+        showAlert("All ToDos Cleared Successfully !", "success");
+    } else {
+        showAlert("NO Todos To Cleared", "error") ;
+    }
 
+};
+
+window.addEventListener("load", displayToDos);
 addButton.addEventListener("click", addHandler) ;
+deleteAllButton.addEventListener("click", deleteAllHandler);

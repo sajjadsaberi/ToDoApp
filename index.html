@@ -7,7 +7,7 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-     <div class="container">
+    <div class="container">
         <div class="input-section">
             <input type="text" placeholder="Add Todo ..." id="task-input" />
             <input type="date" id="date-input" />
@@ -19,11 +19,11 @@
                 <button class="liter-todos">Pending</button>
                 <button class="liter-todos">Completed</button>
             </div>
-            <button>Delete All</button>
+            <button id="delete-all-buttton">Delete All</button>
         </div>
-     </div>
-     <div id="alert-message"></div>
-     <div class="table">
+    </div>
+    <div id="alert-message"></div>
+    <div class="table">
         <table>
             <thead>
                 <tr>
@@ -34,9 +34,10 @@
                 </tr>
             </thead>
             <tbody>
+
             </tbody>
         </table>
-     </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
