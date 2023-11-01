@@ -9,10 +9,6 @@ const generateId = () => {
     return Math.round(Math.random() * Math.random() * Math.pow(10,15)).toString();
 };
 
-
-// add alerts :
-
-
 const showAlert = (message, type) => {
     alertMessage.innerHTML = "";
     const alert = document.createElement("p") ;
