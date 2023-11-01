@@ -9,6 +9,10 @@ const generateId = () => {
     return Math.round(Math.random() * Math.random() * Math.pow(10,15)).toString();
 };
 
+
+// add alerts :
+
+
 const showAlert = (message, type) => {
     alertMessage.innerHTML = "";
     const alert = document.createElement("p") ;
@@ -22,6 +26,9 @@ const showAlert = (message, type) => {
     }, 2000);
 };
 
+const saveToLocalStorage = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+};
 
 const addHandler = () => {
     const task = taskInput.value ;
@@ -34,6 +41,7 @@ const addHandler = () => {
     };
     if(task !== "") {
         todos.push(todo) ;
+        saveToLocalStorage() ;
         taskInput.value = "" ;
         dateInput.value = "" ;
         console.log(todos) ;
