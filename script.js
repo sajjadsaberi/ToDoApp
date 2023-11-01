@@ -33,12 +33,21 @@ const displayToDos = () => {
         todosBody.innerHTML = "<tr><td colspan='4'>No Task Found!</td></tr>";
         return ;
     };
-    todos.forEach(todo => {
-        
+    todos.forEach((todo) => {
+        todosBody.innerHTML += `
+            <tr>
+                <td>${todo.task}</td>
+                <td>${todo.date || "No Date"}</td>
+                <td>${todo.completed ? "Completed" : "Pending"}</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Do</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+        `
     });
 };
-
-displayToDos() ;
 
 const addHandler = () => {
     const task = taskInput.value ;
@@ -61,5 +70,7 @@ const addHandler = () => {
         showAlert("Please Enter a ToDo!", "error") ;
     }
 };
+
+displayToDos() ;
 
 addButton.addEventListener("click", addHandler) ;
