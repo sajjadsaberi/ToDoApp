@@ -42,7 +42,7 @@ const displayToDos = () => {
                 <td>${todo.completed ? "Completed" : "Pending"}</td>
                 <td>
                     <button>Edit</button>
-                    <button onclick="toggleHandler('${todo.id}')">Do</button>
+                    <button onclick="toggleHandler('${todo.id}')">${todo.completed ? "Undo" : "Do"}</button>
                     <button onclick="deleteHandler('${todo.id}')">Delete</button>
                 </td>
             </tr>
@@ -101,8 +101,14 @@ const toggleHandler = (id) => {
             date: todo.date,
             completed: !todo.completed
             };
+        } else {
+            return todo ;
         }
     });
+    todos = newTodos;
+    saveToLocalStorage() ;
+    displayToDos();
+    showAlert("Todo Status Changed Successfully", "success");
 };
 
 window.addEventListener("load", displayToDos);
