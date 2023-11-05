@@ -42,7 +42,7 @@ const displayToDos = () => {
                 <td>${todo.completed ? "Completed" : "Pending"}</td>
                 <td>
                     <button>Edit</button>
-                    <button>Do</button>
+                    <button onclick="toggleHandler('${todo.id}')">Do</button>
                     <button onclick="deleteHandler('${todo.id}')">Delete</button>
                 </td>
             </tr>
@@ -91,6 +91,19 @@ const deleteHandler = (id)=> {
     showAlert("ToDo Deleted Successfully", "success");
 };
 
+
+const toggleHandler = (id) => {
+    const newTodos = todos.map(todo => {
+        if(todo.id === id) {
+            return {
+            id: todo.id,
+            task: todo.task,
+            date: todo.date,
+            completed: !todo.completed
+            };
+        }
+    });
+};
 
 window.addEventListener("load", displayToDos);
 addButton.addEventListener("click", addHandler) ;
