@@ -83,6 +83,8 @@ const deleteAllHandler = () => {
 
 };
 
+//add delete button
+
 const deleteHandler = (id)=> {
     const newTodos = todos.filter(todo => todo.id !== id);
     todos = newTodos ;
@@ -91,6 +93,7 @@ const deleteHandler = (id)=> {
     showAlert("ToDo Deleted Successfully", "success");
 };
 
+// add toggle
 
 const toggleHandler = (id) => {
     const newTodos = todos.map(todo => {
