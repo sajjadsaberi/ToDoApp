@@ -41,7 +41,7 @@ const displayToDos = () => {
                 <td>${todo.date || "No Date"}</td>
                 <td>${todo.completed ? "Completed" : "Pending"}</td>
                 <td>
-                    <button>Edit</button>
+                    <button onclick="editHandler('${todo.id}')">Edit</button>
                     <button onclick="toggleHandler('${todo.id}')">${todo.completed ? "Undo" : "Do"}</button>
                     <button onclick="deleteHandler('${todo.id}')">Delete</button>
                 </td>
@@ -113,6 +113,14 @@ const toggleHandler = (id) => {
     displayToDos();
     showAlert("Todo Status Changed Successfully", "success");
 };
+
+const editHandler = (id) => {
+    const todo = todos.find((todo) => todo.id === id);
+    taskInput.value = todo.task ;
+    dateInput.value = todo.date ;
+};
+
+
 
 window.addEventListener("load", displayToDos);
 addButton.addEventListener("click", addHandler) ;
