@@ -4,7 +4,10 @@ const addButton = document.getElementById("add-button") ;
 const editButton = document.getElementById("edit-button") ;
 const alertMessage = document.getElementById("alert-message");
 const todosBody = document.querySelector("tbody");
-const deleteAllButton = document.getElementById("delete-all-buttton");
+const deleteAllButton = document.getElementById("delete-all-button");
+const filterButtons = document.querySelectorAll(".filter-todos") ;
+
+
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
@@ -29,13 +32,14 @@ const showAlert = (message, type) => {
     }, 2000);
 };
 
-const displayToDos = () => {
+const displayToDos = (data) => {
+    const todoList = data ? data : todos ;
         todosBody.innerHTML = "" ;
-    if(todos.length === 0) {
+    if(!todoList.length) {
         todosBody.innerHTML = "<tr><td colspan='4'>No Task Found!</td></tr>";
         return ;
     };
-    todos.forEach((todo) => {
+    todoList.forEach((todo) => {
         todosBody.innerHTML += `
             <tr>
                 <td>${todo.task}</td>
@@ -73,7 +77,7 @@ const addHandler = () => {
 };
 
 const deleteAllHandler = () => {
-    if (todos.lengh) {
+    if (todos.length) {
         todos = [] ;
         saveToLocalStorage();
         displayToDos() ;
@@ -138,7 +142,28 @@ const applyEditHandler = event => {
     showAlert("Todo Edited is Successfully!", "success" );
 };
 
+const filterHandler = (event) => {
+    let filteredTodos= null ;
+    const filter = event.target.dataset.filter ;
+    switch (filter) {
+        case "pending" :
+            filteredTodos = todos.filter((todo) => todo.completed === false);
+            break;
+        case "completed" :
+            filteredTodos = todos.filter((todo) => todo.completed === true);
+            break;
+
+        default:
+            filteredTodos = todos ;
+        break;
+    }
+    console.log(filteredTodos);
+};
+
 window.addEventListener("load", displayToDos);
 addButton.addEventListener("click", addHandler) ;
 deleteAllButton.addEventListener("click", deleteAllHandler);
-editButton.addEventListener("click", applyEditHandler)
+editButton.addEventListener("click", applyEditHandler);
+filterButtons.forEach((button) => {
+    button.addEventListener("click", filterHandler) ;
+});
