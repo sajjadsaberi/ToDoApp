@@ -157,10 +157,10 @@ const filterHandler = (event) => {
             filteredTodos = todos ;
         break;
     }
-    console.log(filteredTodos);
+    displayToDos(filteredTodos) ;
 };
 
-window.addEventListener("load", displayToDos);
+window.addEventListener("load", () => displayToDos());
 addButton.addEventListener("click", addHandler) ;
 deleteAllButton.addEventListener("click", deleteAllHandler);
 editButton.addEventListener("click", applyEditHandler);
